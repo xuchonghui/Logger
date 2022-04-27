@@ -16,14 +16,15 @@ namespace Logger
         public static string MessageFormart(string Message,bool IsDetailMode,MessageType Type,string CallerName,string FileName,int Line)
         {
             var builder = new StringBuilder();
-            builder.Append($"[{Type.ToString().PadRight(20)}]  ");
+            builder.Append($"[{Type.ToString().PadRight(5)}]  ");
             builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  ");
             if (IsDetailMode)
             {
-                builder.Append(Path.GetFileName(CallerName) + " > ");
-                builder.Append(CallerName + "() > ");
+                builder.Append(Path.GetFileName(FileName) + "  -> ");
+                builder.Append($"{CallerName}()  ->  ");
                 builder.Append(Line.ToString().PadLeft(4));
             }
+            builder.Append("  ===>  ");
             builder.Append(Message);
             return builder.ToString();
 

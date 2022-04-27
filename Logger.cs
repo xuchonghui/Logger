@@ -26,7 +26,7 @@ namespace Logger
 
             loggers.ForEach(logger => 
             {
-                logger.WriteLine(MessageType.INFO,"".PadLeft(20,'*') +$"Logger is creat in {DateTime.Now.ToString("F")}"+ "".PadLeft(20, '*'));
+                logger.WriteLine(MessageType.INFO,"".PadLeft(21,'*') +$"Logger is creat in {DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss")}"+ "".PadLeft(21, '*'));
             });
         }
 
@@ -34,7 +34,7 @@ namespace Logger
         {
             loggers.ForEach(logger =>
             {
-                logger.WriteLine(MessageType.INFO, "".PadLeft(20, '*') + $"Logger is destroy in {DateTime.Now.ToString("F")}" + "".PadLeft(20, '*'));
+                logger.WriteLine(MessageType.INFO, "".PadLeft(20, '*') + $"Logger is destroy in {DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss")}" + "".PadLeft(20, '*'));
             });
             loggers.Clear();
         }

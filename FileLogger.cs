@@ -17,7 +17,7 @@ namespace Logger
                 Directory.CreateDirectory(_FilePath);
 
             //创建日志文件
-            _FileName = _FilePath + $"[{base._LogLevel.ToString()}]" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".log";
+            _FileName = _FilePath + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".log";
             var fileStream = new FileStream(_FileName, FileMode.Create);
             fileStream.Close();
         }
