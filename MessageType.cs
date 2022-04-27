@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logger
 {
-    public enum LogType
+    public enum MessageType
     {
         DEBUG,
         INFO,

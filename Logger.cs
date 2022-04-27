@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Logger
 
             loggers.ForEach(logger => 
             {
-                logger.WriteLine(LogLevel.INFO,"".PadLeft(20,'*') +$"Logger is creat in {DateTime.Now.ToString("F")}"+ "".PadLeft(20, '*'));
+                logger.WriteLine(MessageType.INFO,"".PadLeft(20,'*') +$"Logger is creat in {DateTime.Now.ToString("F")}"+ "".PadLeft(20, '*'));
             });
         }
 
@@ -33,10 +34,43 @@ namespace Logger
         {
             loggers.ForEach(logger =>
             {
-                logger.WriteLine(LogLevel.INFO, "".PadLeft(20, '*') + $"Logger is destroy in {DateTime.Now.ToString("F")}" + "".PadLeft(20, '*'));
+                logger.WriteLine(MessageType.INFO, "".PadLeft(20, '*') + $"Logger is destroy in {DateTime.Now.ToString("F")}" + "".PadLeft(20, '*'));
             });
             loggers.Clear();
         }
 
+        public static void WriteDebug(string Message,[CallerMemberName] string CallerName = null,[CallerFilePath]string FilePath = null,[CallerLineNumber]int Line = 0)
+        {
+            WriteMessage(MessageType.DEBUG, Message, CallerName, FilePath, Line);
+        }
+
+        public static void WriteInfo(string Message, [CallerMemberName] string CallerName = null, [CallerFilePath] string FilePath = null, [CallerLineNumber] int Line = 0)
+        {
+            WriteMessage(MessageType.INFO, Message, CallerName, FilePath, Line);
+        }
+
+        public static void WriteWarn(string Message, [CallerMemberName] string CallerName = null, [CallerFilePath] string FilePath = null, [CallerLineNumber] int Line = 0)
+        {
+            WriteMessage(MessageType.WARN, Message, CallerName, FilePath, Line);
+        }
+
+        public static void WriteError(string Message, [CallerMemberName] string CallerName = null, [CallerFilePath] string FilePath = null, [CallerLineNumber] int Line = 0)
+        {
+            WriteMessage(MessageType.ERROR, Message, CallerName, FilePath, Line);
+        }
+
+        public static void WriteFatal(string Message, [CallerMemberName] string CallerName = null, [CallerFilePath] string FilePath = null, [CallerLineNumber] int Line = 0)
+        {
+            WriteMessage(MessageType.FATAL, Message, CallerName, FilePath, Line);
+        }
+
+        public static void WriteMessage(MessageType Type,string Message,string CallerName,string FileName,int Line)
+        {
+            var msg = LoggerBase.MessageFormart(Message, true ,Type, CallerName, FileName, Line);
+            loggers.ForEach((logger) =>
+            {
+                logger.WriteLine(Type, msg);
+            });
+        }
     }
 }

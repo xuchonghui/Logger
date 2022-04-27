@@ -24,9 +24,9 @@ namespace Logger
 
         private object _Lock = new object();
 
-        public override bool WriteLine(LogLevel Level, string Message)
+        public override bool WriteLine(MessageType Type, string Message)
         {
-            if(Level > base._LogLevel)
+            if((int)Type > (int)base._LogLevel)
                 return false;
 
             lock (_Lock)

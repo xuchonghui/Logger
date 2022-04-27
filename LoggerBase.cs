@@ -13,7 +13,7 @@ namespace Logger
 
         public LoggerBase(LogLevel logLevel) => _LogLevel = logLevel;
 
-        public static string MessageFormart(string Message,bool IsDetailMode,LogType Type,string CallerName,string FileName,int Line)
+        public static string MessageFormart(string Message,bool IsDetailMode,MessageType Type,string CallerName,string FileName,int Line)
         {
             var builder = new StringBuilder();
             builder.Append($"[{Type.ToString().PadRight(20)}]  ");
@@ -29,6 +29,6 @@ namespace Logger
 
         }
 
-        public abstract bool WriteLine(LogLevel Level, string Message);
+        public abstract bool WriteLine(MessageType Level, string Message);
     }
 }

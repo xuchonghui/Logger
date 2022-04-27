@@ -62,7 +62,7 @@
     <Compile Include="LoggerBase.cs" />
     <Compile Include="LoggerType.cs" />
     <Compile Include="LogLevel.cs" />
-    <Compile Include="LogType.cs" />
+    <Compile Include="MessageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
